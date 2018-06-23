@@ -10,20 +10,27 @@ modules="/Users/edeleastar/repos/modules/wit-hdip-comp-sci/course-home-2018
 /Users/edeleastar/repos/modules/wit-hdip-comp-sci/computer-systems-2018
 /Users/edeleastar/repos/modules/wit-hdip-comp-sci/database-2018"
 
-# Fetch all
-for module in $modules
-do
+function fetchAll() {
+  for module in $modules
+  do
     fetch "$module"
-done
+  done
+}
 
-# Generate all
-for module in $modules
-do
-    generate "$module"
-done
-
-# Publish all
-for module in $modules
-do
+function publishAll() {
+  for module in $modules
+  do
     publish "$module"
-done
+  done
+}
+
+function generateAll() {
+  for module in $modules
+  do
+    generate "$module"
+  done
+}
+
+#fetchAll
+generateAll
+#publishAll

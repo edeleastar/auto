@@ -23,6 +23,8 @@ function publish() {
   git push 
 }
 
+
+
 export -f fetch generate publish
 
 
