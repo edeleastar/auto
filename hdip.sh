@@ -2,35 +2,69 @@
 
 . /Users/edeleastar/bin/auto/lib.sh
 
-modules="/Users/edeleastar/repos/modules/wit-hdip-comp-sci/course-home-2018
-/Users/edeleastar/repos/modules/wit-hdip-comp-sci/programming-2018
-/Users/edeleastar/repos/modules/wit-hdip-comp-sci/web-development-2018
-/Users/edeleastar/repos/modules/wit-hdip-comp-sci/june-onsite-2018
-/Users/edeleastar/repos/modules/wit-hdip-comp-sci/ict-skills-2018
-/Users/edeleastar/repos/modules/wit-hdip-comp-sci/computer-systems-2018
-/Users/edeleastar/repos/modules/wit-hdip-comp-sci/database-2018"
+baseYear="2018"
+localRoot="/Users/edeleastar/repos/modules/wit-hdip-comp-sci/$baseYear"
+remoteRouteSrc="https://edel020@bitbucket.org/wit-hdip-comp-sci"
+remoteRoutePublic="https://github.com/wit-hdip-comp-sci-$baseYear"
+
+modules="computer-systems
+course-home
+database
+ict-skills
+programming
+web-development
+june-onsite"
+
+function cloneAll() {
+  start=$SECONDS
+  echo "Cloning all modules to $localRoot"
+  for module in $modules
+  do
+    cd ${localRoot}
+    clone ${remoteRouteSrc}/${module}-${baseYear}
+    cd ${module}-${baseYear}
+    git clone ${remoteRoutePublic}/${module}
+    echo "Renaming ${module} to public-site-uk"
+    mv ${module} public-site-uk
+  done
+  end=$SECONDS
+  duration=$(( end - start ))
+  echo "Duration = ${duration/60} Minutes"
+}
 
 function fetchAll() {
   for module in $modules
   do
-    fetch "$module"
-  done
-}
-
-function publishAll() {
-  for module in $modules
-  do
-    publish "$module"
+    echo
+    cd ${localRoot}/${module}-${baseYear}
+    echo ${module} Source
+    git pull
+    cd "$localRoot/$module-$baseYear/public-site-uk"
+    echo ${module} Public
+    git pull
   done
 }
 
 function generateAll() {
   for module in $modules
   do
-    generate "$module"
+    cd "$localRoot/$module-$baseYear"
+    tutors-ts
   done
 }
 
+function publishAll() {
+  for module in $modules
+  do
+    echo Publishing ${module}
+    cd ${localRoot}/${module}-${baseYear}/public-site-uk
+    git add .
+    git commit -m 'style update'
+    git push
+  done
+}
+
+#cloneAll
 #fetchAll
-generateAll
+#generateAll
 #publishAll
