@@ -1,34 +1,47 @@
 #!/bin/bash
 
-function clone () {
-  echo cloning $1
-  git clone $1
+function cloneAll() {
+  echo "Cloning all modules to ${localRoot}"
+  for module in $modules
+  do
+    cd ${localRoot}
+    git clone ${remoteRouteSrc}/${module}${srcPostfix}
+    cd ${module}${srcPostfix}
+    git clone ${remoteRoutePublic}/${module}
+    echo "Renaming ${module} to public-site-uk"
+    mv ${module} public-site-uk
+  done
 }
 
-
-function fetch () {
-  echo Getting Latest  $1
-  cd $1
-  git pull
-  cd $1/public-site-uk
-  echo Getting Latest  $1//public-site-uk
-  git pull
+function pullAll() {
+  for module in $modules
+  do
+    echo
+    cd ${localRoot}/${module}${srcPostfix}
+    echo Pull from ${remoteRouteSrc}/${module}${srcPostfix} [Source Repo]
+    git pull
+    cd "${localRoot}/${module}${srcPostfix}/public-site-uk"
+    echo Pull from ${remoteRoutePublic}/${module} [Public Repo]
+    git pull
+  done
 }
 
-function generate () {
-  echo Generating $1
-  cd $1
-  tutors-ts
-  open public-site-uk/index.html
+function generateAll() {
+  for module in $modules
+  do
+    cd "${localRoot}/${module}${srcPostfix}"
+    tutors-ts
+  done
 }
 
-function publish() {
-  echo Publishing $1
-  git add .
-  git commit -m 'style update'
-  git push 
+function publishAll() {
+  for module in $modules
+  do
+    echo Publishing ${remoteRoutePublic}/${module}
+    cd ${localRoot}/${module}${srcPostfix}/public-site-uk
+    git add .
+    git commit -m 'style update'
+    git push
+  done
 }
-
-export -f clone fetch generate publish
-
 
