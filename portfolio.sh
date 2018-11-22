@@ -2,18 +2,20 @@
 
 . /Users/edeleastar/bin/auto/lib.sh
 
-baseYear="2018"
-localRoot="/Users/edeleastar/repos/modules/wit-hdip-comp-sci/$baseYear"
-remoteRouteSrc="https://edel020@bitbucket.org/wit-hdip-comp-sci"
-remoteRoutePublic="https://github.com/wit-hdip-comp-sci-$baseYear"
+baseYear="src"
+localRoot="/Users/edeleastar/repos/modules/edeleastar.github.io"
+remoteRouteSrc="https://github.com/edeleastar-portfolio"
+remoteRoutePublic="https://github.com/edeleastar-portfolio"
 
-modules="computer-systems
-course-home
-database
-ict-skills
-programming
-web-development
-june-onsite"
+modules="web-site-dev
+web-app-dev-js
+web-app-dev-java
+node-web-app-dev
+android-app-dev
+android-app-dev-kotlin
+agile-soft-dev
+design-patterns
+design-patterns-with-enterprise-arch"
 
 function cloneAll() {
   echo "Cloning all modules to $localRoot"
@@ -65,4 +67,4 @@ function publishAll() {
 #cloneAll
 #fetchAll
 #generateAll
-#publishAll
+publishAll
