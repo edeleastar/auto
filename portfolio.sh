@@ -17,7 +17,7 @@ design-patterns-with-enterprise-arch"
 
 . /Users/edeleastar/bin/auto/lib.sh
 
-cloneAll
+#cloneAll
 #pullAll
 #generateAll
-#publishAll
+publishAll
