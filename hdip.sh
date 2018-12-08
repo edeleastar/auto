@@ -1,26 +1,29 @@
 #!/usr/bin/env bash
 
-year="2019"
+year="2018"
 
 srcPostfix="-${year}"
 localRoot="/Users/edeleastar/repos/modules/wit-hdip-comp-sci/${year}"
 remoteRouteSrc="https://edel020@bitbucket.org/wit-hdip-comp-sci"
 remoteRoutePublic="https://github.com/wit-hdip-comp-sci${srcPostfix}"
 
-#modules="computer-systems
-#database
-#ict-skills
+modules="course-home
+computer-systems
+database
+ict-skills
+programming
+web-development
+june-onsite
+jan-onsite"
+
+#modules="course-home
 #programming
-#web-development
-#june-onsite"
-
-
-modules="programming
-web-development"
+#web-development"
 
 . /Users/edeleastar/bin/auto/lib.sh
 
 #cloneAll
-#pullAll
+pullAll
+#commitAllSources
 generateAll
-#publishAll
+publishAll

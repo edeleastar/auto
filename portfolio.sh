@@ -19,5 +19,5 @@ design-patterns-with-enterprise-arch"
 
 #cloneAll
 #pullAll
-#generateAll
-publishAll
+generateAll
+#publishAll

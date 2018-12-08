@@ -45,3 +45,13 @@ function publishAll() {
   done
 }
 
+function commitAllSources() {
+  for module in $modules
+  do
+    echo Commiting ${module}${srcPostfix}
+    cd ${localRoot}/${module}${srcPostfix}
+    git add .
+    git commit -m 'source update'
+    git push
+  done
+}
